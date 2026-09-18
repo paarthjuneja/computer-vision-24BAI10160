@@ -1,153 +1,140 @@
-# VisionForge: Computer Vision CLI Toolkit & 3D Reconstruction Suite
+# VisionForge: Computer Vision Coursework Project
 
-[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![OpenCV](https://img.shields.io/badge/OpenCV-4.8+-5C3EE8?logo=opencv&logoColor=white)](https://opencv.org/)
-[![Tests](https://img.shields.io/badge/Tests-12%20Passed-brightgreen)](tests/)
-
-VisionForge is a modular, beginner-friendly Computer Vision CLI application and experimental suite built for university coursework. It unifies foundational computer vision concepts across image filtering, multi-camera 3D reconstruction, feature extraction, motion analysis, and shape recovery into a single command-line interface.
-
----
-
-## Table of Contents
-- [Overview](#overview)
-- [Key Features](#key-features)
-- [System Architecture](#system-architecture)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage Guide](#usage-guide)
-  - [1. Low-Level Processing & Filtering](#1-low-level-processing--filtering)
-  - [2. Feature Extraction & Segmentation](#2-feature-extraction--segmentation)
-  - [3. Stereo Vision & 3D Point Cloud](#3-stereo-vision--3d-point-cloud)
-  - [4. Motion & Pattern Analysis](#4-motion--pattern-analysis)
-  - [5. Shape from X (Photometric Stereo)](#5-shape-from-x-photometric-stereo)
-- [Running Unit Tests](#running-unit-tests)
-- [Visual Results](#visual-results)
-- [Author](#author)
+**VIT Bhopal University**  
+**Course**: Computer Vision  
+**Faculty**: Dr. Gaurav Soni  
+**Student Name**: Paarth Juneja  
+**Registration Number**: 24BAI10160  
 
 ---
 
-## Overview
+## Project Overview
 
-Computer vision covers a wide range of topics from 2D pixel transformations to full 3D spatial reasoning. VisionForge provides clean, accessible, and well-structured implementations of core algorithms aligned directly with the course syllabus:
-1. **Low-Level Image Processing**: Spatial convolution (Gaussian, Bilateral, Laplacian), 2D Fourier Transform (FFT), geometric transformations, and contrast enhancement (Histogram Equalization & CLAHE).
-2. **Stereo Vision & Epipolar Geometry**: Perspective stereopsis, disparity map calculation (SGBM), fundamental matrix estimation, and ASCII PLY 3D point cloud generation.
-3. **Feature Detection & Segmentation**: Canny edge detector, Harris corner detector, Hough line transform, SIFT/ORB keypoint matching, image pyramids, Otsu thresholding, and K-Means color segmentation.
-4. **Motion & Pattern Analysis**: Frame differencing, MOG2 background subtraction, Farneback dense optical flow, Lucas-Kanade sparse motion tracking, and PCA dimensionality reduction.
-5. **Shape from X**: Photometric stereo recovering surface normal vectors, albedo maps, and integrated surface depth maps from multi-illumination images.
+VisionForge is a command-line project created for the Computer Vision course (VITyarthi project submission). It puts together algorithms from all 5 units of our course syllabus into one Python project:
 
----
-
-## Key Features
-
-- **Beginner-Friendly Codebase**: Clean functions, clear naming conventions, and minimal boilerplate.
-- **Unified Command-Line Interface**: Run any module easily via standard `python -m visionforge.cli <subcommand>`.
-- **Built-in Synthetic Dataset Generator**: Instant, reproducible sample assets created with a single command.
-- **3D Export Capability**: Export stereo reconstructions directly to standard `.ply` files viewable in MeshLab or Blender.
-- **Quantitative Quality Metrics**: Instant calculation of PSNR, MSE, and Shannon Entropy for filtered images.
+1. **Unit 1: Low-Level Image Processing** - Image filtering (Box blur, Gaussian blur, Laplacian), 2D Fourier Transform (FFT magnitude and lowpass filter), geometric transformations (rotation, translation, affine, projective), and histogram equalization / CLAHE.
+2. **Unit 2: Stereo Vision & 3D Reconstruction** - Stereo disparity calculation using StereoSGBM, epipolar lines with Fundamental matrix, homography stitching, and 3D point cloud export (`.ply` format).
+3. **Unit 3: Feature Detection & Segmentation** - Canny edge detection, Harris corner detection, Hough line transform, SIFT and ORB feature matching, image pyramids, Otsu thresholding, and K-Means color segmentation.
+4. **Unit 4: Motion & Pattern Analysis** - Frame differencing, MOG2 background subtraction, Farneback dense optical flow, Lucas-Kanade sparse feature tracking, and PCA image compression.
+5. **Unit 5: Shape from X** - Photometric Stereo for calculating surface normals, albedo, and 3D depth maps from multiple images taken under different light directions.
 
 ---
 
-## System Architecture
+## Features
 
-VisionForge is organized into a modular three-tier architecture:
-
-![System Architecture](docs/diagrams/architecture_diagram.png)
-
-### Design & UML Diagrams
-- **Workflow Diagram**: `docs/diagrams/workflow_diagram.png`
-- **Use Case Diagram**: `docs/diagrams/usecase_diagram.png`
-- **Class / Component Diagram**: `docs/diagrams/class_diagram.png`
-- **Sequence Diagram**: `docs/diagrams/sequence_diagram.png`
+- Complete coverage of syllabus units 1 to 5.
+- Unified command-line interface with subcommands for each module (`lowlevel`, `features`, `stereo`, `motion`, `shape`).
+- Sample data generator that creates test images locally.
+- 3D point cloud export to `.ply` file format, which can be viewed in MeshLab or Blender.
+- Image quality metrics: PSNR, MSE, and Shannon Entropy.
+- Automated unit test suite using `pytest`.
 
 ---
 
-## Technologies Used
+## Project Structure
 
-- **Language**: Python 3.9+ (tested on Python 3.13 on Windows 11)
-- **Computer Vision**: OpenCV (`opencv-python`)
-- **Scientific Computing**: NumPy, SciPy
-- **Machine Learning**: scikit-learn (PCA, clustering)
-- **Visualization**: Matplotlib
-- **Testing**: pytest
-- **Documentation & Report**: fpdf2
+```
+cv/
+├── visionforge/
+│   ├── common/             # Image I/O, PLY writer, and metric calculations
+│   ├── lowlevel/           # Spatial filters, FFT, transforms, histogram
+│   ├── features/           # Canny, Harris, matching, pyramids, segmentation
+│   ├── stereo_3d/          # Epipolar geometry, SGBM disparity, 3D point cloud
+│   ├── motion_pattern/     # Frame diff, optical flow, PCA
+│   ├── shape_from_x/       # Photometric stereo, normal & depth recovery
+│   └── cli.py              # Main CLI entry point
+├── data/                   # Sample images and generator script
+├── tests/                  # Unit tests for all modules
+├── docs/
+│   ├── diagrams/           # Architecture, workflow, and UML diagrams
+│   └── figures/            # Output visual result figures
+├── report/                 # Project report PDF
+├── requirements.txt        # Required Python packages
+├── run_all.py              # Script to run all tests and demos in one command
+├── README.md
+└── statement.md
+```
 
 ---
 
-## Installation
+## Installation & Setup
 
-1. **Clone the repository**:
+1. **Clone or open the repository folder**:
    ```bash
-   git clone <repo-url>
    cd cv
    ```
 
-2. **Install dependencies**:
+2. **Install required packages**:
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Generate sample datasets**:
+3. **Generate the sample images**:
    ```bash
    python data/generate_samples.py
    ```
 
 ---
 
-## Usage Guide
+## Quick Demo
 
-All operations are executed through `visionforge.cli`. Below are examples for each module:
-
-### 1. Low-Level Processing & Filtering
+To run all unit tests and sample commands at once:
 ```bash
-# Apply Gaussian Blur
+python run_all.py
+```
+This will run the sample generator, execute all 12 unit tests, and save sample outputs to the `output/` directory.
+
+---
+
+## Usage Examples
+
+You can also run each module individually from the command line:
+
+### 1. Low-Level Processing
+```bash
+# Gaussian blur
 python -m visionforge.cli lowlevel -i data/input_sample.png -o output/blur.png -a gaussian
 
-# Compute 2D FFT Magnitude Spectrum
+# 2D FFT magnitude spectrum
 python -m visionforge.cli lowlevel -i data/input_sample.png -o output/fft.png -a fft
 
-# Apply Frequency Domain Low-Pass Filter
-python -m visionforge.cli lowlevel -i data/input_sample.png -o output/fft_low.png -a fft_lowpass
-
-# Apply CLAHE Contrast Enhancement
+# Histogram equalization (CLAHE)
 python -m visionforge.cli lowlevel -i data/input_sample.png -o output/clahe.png -a clahe
 ```
 
-### 2. Feature Extraction & Segmentation
+### 2. Feature Detection & Segmentation
 ```bash
-# Detect Canny Edges
+# Canny edge detector
 python -m visionforge.cli features -i data/input_sample.png -o output/canny.png -a canny
 
-# Detect Harris Corners
+# Harris corner detector
 python -m visionforge.cli features -i data/input_sample.png -o output/harris.png -a harris
 
-# Otsu Threshold Segmentation
+# Otsu thresholding
 python -m visionforge.cli features -i data/input_sample.png -o output/otsu.png -a otsu
 
-# K-Means Color Segmentation (k=3)
+# K-Means segmentation
 python -m visionforge.cli features -i data/input_sample.png -o output/kmeans.png -a kmeans
 ```
 
-### 3. Stereo Vision & 3D Point Cloud
+### 3. Stereo Vision & 3D Reconstruction
 ```bash
-# Compute Disparity Map and Export 3D Point Cloud (.ply)
+# Calculate disparity map and export 3D point cloud
 python -m visionforge.cli stereo -l data/stereo_left.png -r data/stereo_right.png -o output/disparity.png --ply output/points.ply
 ```
 
-### 4. Motion & Pattern Analysis
+### 4. Motion Analysis & PCA
 ```bash
-# Compute Frame Differencing
-python -m visionforge.cli motion -f1 data/motion_frame1.png -f2 data/motion_frame2.png -o output/diff.png -a diff
-
-# Compute Dense Optical Flow (Farneback HSV)
+# Dense optical flow
 python -m visionforge.cli motion -f1 data/motion_frame1.png -f2 data/motion_frame2.png -o output/flow.png -a dense_flow
 
-# Image Compression using PCA
+# PCA image compression
 python -m visionforge.cli motion -f1 data/input_sample.png -f2 data/input_sample.png -o output/pca.png -a pca
 ```
 
 ### 5. Shape from X (Photometric Stereo)
 ```bash
-# Reconstruct Surface Normals, Albedo, and Depth from 4 Illumination Images
+# Recover surface normals, albedo, and depth
 python -m visionforge.cli shape -i data/light1.png data/light2.png data/light3.png data/light4.png -o output/normals.png
 ```
 
@@ -155,36 +142,22 @@ python -m visionforge.cli shape -i data/light1.png data/light2.png data/light3.p
 
 ## Running Unit Tests
 
-Run the complete test suite using `pytest`:
+Run the test suite with pytest:
 ```bash
 python -m pytest -v
 ```
-
-All 12 automated unit tests across all 5 syllabus modules will execute and report passing status.
-
----
-
-## Visual Results
-
-### Low-Level Image Processing
-![Low-Level Results](docs/figures/fig_lowlevel.png)
-
-### Feature Detection & Segmentation
-![Feature Results](docs/figures/fig_features.png)
-
-### Stereo Disparity Estimation
-![Stereo Results](docs/figures/fig_stereo.png)
-
-### Dense Optical Flow Motion Vectors
-![Motion Results](docs/figures/fig_motion.png)
-
-### Photometric Stereo Normal & Depth Recovery
-![Photometric Results](docs/figures/fig_shape.png)
+All 12 unit tests should pass.
 
 ---
 
-## Author
+## Results and Diagrams
 
-- **Name**: Paarth Juneja
-- **Email**: paarthjuneja2006@gmail.com
-- **Course**: Computer Vision Coursework Project
+All design diagrams and sample output results are stored in the `docs/` directory:
+- `docs/diagrams/architecture_diagram.png`: System architecture
+- `docs/diagrams/workflow_diagram.png`: Processing workflow
+- `docs/diagrams/usecase_diagram.png`: Use case diagram
+- `docs/diagrams/class_diagram.png`: Component & package structure
+- `docs/diagrams/sequence_diagram.png`: Sequence diagram for stereo reconstruction
+- `docs/figures/`: Sample visual output comparisons across all 5 modules
+
+The complete academic project report is available at `report/VisionForge_Project_Report.pdf`.
