@@ -32,7 +32,6 @@ def main():
     print("\n" + "=" * 60)
     print(" All demos, tests, and CLI modules verified successfully!")
     print(" Output files saved to 'output/' directory.")
-    print(" Academic report available at 'report/VisionForge_Project_Report.pdf'.")
     print("=" * 60)
 
 if __name__ == "__main__":

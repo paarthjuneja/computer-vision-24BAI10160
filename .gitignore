@@ -1,4 +1,4 @@
-﻿# Python
+# Python
 __pycache__/
 *.py[cod]
 *.class
@@ -39,5 +39,6 @@ htmlcov/
 
 # Outputs & temporary data
 output/
+report/
 *.ply_temp
 temp/

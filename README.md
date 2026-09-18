@@ -48,7 +48,6 @@ cv/
 ├── docs/
 │   ├── diagrams/           # Architecture, workflow, and UML diagrams
 │   └── figures/            # Output visual result figures
-├── report/                 # Project report PDF
 ├── requirements.txt        # Required Python packages
 ├── run_all.py              # Script to run all tests and demos in one command
 ├── README.md
@@ -159,5 +158,3 @@ All design diagrams and sample output results are stored in the `docs/` director
 - `docs/diagrams/class_diagram.png`: Component & package structure
 - `docs/diagrams/sequence_diagram.png`: Sequence diagram for stereo reconstruction
 - `docs/figures/`: Sample visual output comparisons across all 5 modules
-
-The complete academic project report is available at `report/VisionForge_Project_Report.pdf`.
